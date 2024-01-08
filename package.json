@@ -1,0 +1,35 @@
+{
+  "name": "ho_tracker_bot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "run": "node dist/index.js",
+    "start": "npm run build && npm run run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Holovin/ho-tracker-bot.git"
+  },
+  "author": "Alex Holovin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Holovin/ho-tracker-bot/issues"
+  },
+  "homepage": "https://github.com/Holovin/ho-tracker-bot#readme",
+  "devDependencies": {
+    "@types/nconf": "^0.10.3",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "axios": "^1.6.3",
+    "chrono-node": "^2.7.4",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
+    "grammy": "^1.20.2",
+    "nconf": "^0.12.1",
+    "radash": "^11.0.0",
+    "winston": "^3.11.0"
+  }
+}
