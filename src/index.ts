@@ -32,14 +32,17 @@ async function checkAccess(ctx: Context, next: NextFunction): Promise<void> {
     }
 
     if (ctx.update.chat_member || ctx.update.chat_boost || ctx.update.removed_chat_boost) {
-        if (ctx.update.chat_member?.chat.type !== 'channel') {
+        if (
+            (ctx.update.chat_member && ctx.update.chat_member.chat.type !== 'channel')
+            || (ctx.update.chat_boost && ctx.update.chat_boost.chat.type !== 'channel')
+        ) {
             await suicide(ctx);
         }
 
         return next();
     }
 
-    const chatId = ctx?.message?.chat?.id;
+    const chatId = ctx.message?.chat?.id;
     if (!chatId || (chatId !== configChatId && chatId !== adminId)) {
         logger.debug(`mid: skip message from --  ${ctx.update.update_id} -- ${chatId}`);
         await notify(ctx, escapeMarkdown(`Access warning! From ${chatId}, dump: ${JSON.stringify(ctx.update)}`));
@@ -89,7 +92,7 @@ async function initBot(bot: Bot) {
 
         const message =
             `${statusEmoji[0]} *${escapeMarkdown(from)}*: ${statusEmoji[1]} \n\n` +
-            `${escapeMarkdown((user.first_name ?? '') + (user.last_name ?? '')) }` +
+            `${escapeMarkdown((user.first_name ?? '') + ' ' + (user.last_name ?? '')) }` +
             (user.username ? `\n@${escapeMarkdown(user.username ?? '')}` : '') +
             (user.id ? `\nID: [${user.id}](tg://user?id=${user.id})` : '');
 
