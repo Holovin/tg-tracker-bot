@@ -9,7 +9,6 @@ const logger = createLoggerWrap();
 const configChatId = +config.get('telegram:chat');
 const adminId = +config.get('telegram:admin');
 const telegramToken = config.get('telegram:token');
-const channels = config.get('telegram:channels');
 
 const bot = new Bot(telegramToken);
 
@@ -68,8 +67,11 @@ async function initBot(bot: Bot) {
     bot.use(checkAccess);
 
     bot.command('ping', async (ctx: Context) => {
-        // await ctx.reply('Pong!');
-        await notify(ctx, escapeMarkdown(`*bbb* test`));
+        if (ctx.chat?.type !== 'private' || ctx.chat.id !== adminId) {
+            return;
+        }
+
+        await notify(ctx, escapeMarkdown(`I'm fine, ${JSON.stringify(ctx.update)}`));
     });
 
     bot.on(['chat_boost', 'removed_chat_boost'], async (ctx: Context) => {
