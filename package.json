@@ -1,6 +1,6 @@
 {
-  "name": "ho_tracker_bot",
-  "version": "0.0.1",
+  "name": "tg-tracker-bot",
+  "version": "0.0.4",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Holovin/ho-tracker-bot.git"
+    "url": "git+https://github.com/Holovin/tg-tracker-bot.git"
   },
   "author": "Alex Holovin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Holovin/ho-tracker-bot/issues"
+    "url": "https://github.com/Holovin/tg-tracker-bot/issues"
   },
-  "homepage": "https://github.com/Holovin/ho-tracker-bot#readme",
+  "homepage": "https://github.com/Holovin/tg-tracker-bot#readme",
   "devDependencies": {
     "@types/nconf": "^0.10.3",
     "typescript": "^5.0.4"
